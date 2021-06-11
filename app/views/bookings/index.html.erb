@@ -1,0 +1,43 @@
+<div class="container-fiuld reservations">
+	<h4 class="pb-4">予約済みルーム一覧</h4>
+		<table>
+			<thead>
+				<tr align="center">
+					<th>ルーム画像</th>
+					<th>ルーム名</th>
+					<th>ルーム紹介</th>
+					<th>合計料金</th>
+					<th>開始日</th>
+					<th>終了日</th>
+					<th>予約確定日時</th>
+				</tr>
+			</thead>
+			<tbody>
+			<% @bookings.each do |b| %>
+				<tr>
+					<td>
+						<%= link_to image_tag(b.property.room_image.url, class:"reservations-image"), property_path(id: b.property_id) %>
+					</td>
+					<td class="post-name">
+						<%= link_to "#{b.property.room_name}", property_path(id: b.property_id) %>
+					</td>
+					<td class="posts-content">
+						<%= b.property.room_introduction %>
+					</td>
+					<td class="price-icon">
+						<%= b.total_charge %>
+					</td>
+					<td>
+						<%= l b.booking_start %>
+					</td>
+					<td>
+						<%= l b.booking_end %>
+					</td>
+					<td>
+						<%= b.booking_confirmed%>
+					</td>
+				</tr>
+			<% end %>
+			</tbody>
+		</table>
+</div>

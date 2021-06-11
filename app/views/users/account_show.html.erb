@@ -1,0 +1,50 @@
+<div class="container-fiuld user">
+	<div class="row">
+		<div class="col-lg-2 user-menu user-menu-pc d-lg-block d-none">
+			<ul>
+				<li class="active">
+					<%= link_to "アカウント", users_account_path %>
+				</li>
+				<li>
+					<%= link_to "プロフィール", users_profile_path %>
+				<li>
+			</ul>
+		</div>
+		<div class="col-lg-2 user-menu user-menu-mobile d-lg-none">
+			<ul>
+				<li class="active">
+					<%= link_to "アカウント", users_account_path %>
+				</li>
+				<li>
+					<%= link_to "プロフィール", users_profile_path %>
+				<li>
+			</ul>
+		</div>
+		<div class="col-lg-10 user-view">
+			<div class="user-view-box">
+				<div class="update-content">
+					<div class="row">
+						<h5>アカウント</h5>
+					</div>
+				</div>
+					<div class="update-content">
+						<div class="row">
+							<label class="col-md-3">メールアドレス</label>
+							<span class="mb-4 col-md-9"><%= @user.email %></span>
+						</div>	
+					</div>
+					<div class="update-content">
+						<div class="row">
+							<label class="col-md-3">パスワード</label>
+							<span class="mb-4 col-md-9">**********</span>
+						</div>	
+					</div>
+					<div class="update-content">
+						<div class="row">
+							<%= link_to 'アカウント編集', edit_user_registration_path, class: "col-md-2 btn btn-primary mx-3 hover-opacity" %>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,63 @@
+<div class="container-fiuld user">
+	<div class="row">
+		<div class="col-lg-2 user-menu user-menu-pc d-lg-block d-none">
+			<ul>
+				<li>
+					<%= link_to "アカウント", users_account_path %>
+				</li>
+				<li class="active">
+					<%= link_to "プロフィール", users_profile_path %>
+				<li>
+			</ul>
+		</div>
+		<div class="col-lg-2 user-menu user-menu-mobile d-lg-none">
+			<ul>
+				<li>
+					<%= link_to "アカウント", users_account_path %>
+				</li>
+				<li class="active">
+					<%= link_to "プロフィール", users_profile_path %>
+				<li>
+			</ul>
+		</div>
+		<div class="col-lg-10 user-view">
+			<div class="user-view-box">
+				<div class="update-content">
+					<div class="row">
+						<h5>プロフィール</h5>
+					</div>
+				</div>
+					<div class="update-content">
+						<div class="row">
+							<div class="col-md-6 offset-md-3">
+								<div class="icon-box">
+								<% if @user.image? %>
+									<%= image_tag @user.image.url, alt: "ユーザーアイコン", class: "icon-image host-icon" %>
+							  	<% else %>
+									<%= image_tag "default_icon.jpg", alt: "ユーザーアイコン", class: "icon-image host-icon" %>
+							  	<% end %>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="update-content">
+						<div class="row">
+							<label class="col-md-3">名前</label>
+							<span class="mb-4 col-md-9"><%= @user.user_name %></span>
+						</div>	
+					</div>
+					<div class="update-content">
+						<div class="row">
+							<label class="col-md-3">自己紹介</label>
+							<span class="mb-4 col-md-9"><%= @user.user_introduction %></span>
+						</div>	
+					</div>
+					<div class="update-content">
+						<div class="prof-edit-btn-row">
+							<%= link_to 'プロフィール編集', profile_edit_path, class: "col-md-2-1 btn btn-primary mx-3 profile-edit-btn-size hover-opacity" %>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+</div>

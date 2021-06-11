@@ -1,0 +1,44 @@
+<div class="container-fiuld user">
+	<div class="row">
+		<div class="col-md-12 user-view">
+			<div class="user-view-box">
+				<div class="result-letter">
+					<h1 class="center-letter">ご予約いただきましてありがとうございます。</h1>
+					<h6 class="center-letter">下記内容にて、予約致しました。</h6>
+				</div>
+				<div class="update-content">
+					<div class="row">
+						<label class="col-md-3">予約した部屋</label>
+						<div class="col-md-9">
+							<%= @booking.property.room_name %>
+						</div>
+					</div>
+				</div>
+				<div class="update-content">
+					<div class="row">
+						<label class="col-md-3">開始日</label>
+						<div class="col-md-9">
+							<%= l @booking.booking_start %>
+						</div>
+					</div>
+				</div>
+				<div class="update-content">
+					<div class="row">
+						<label class="col-md-3">終了日</label>
+						<div class="col-md-9">
+							<%= l @booking.booking_end%>
+						</div>
+					</div>
+				</div>
+				<div class="update-content">
+					<div class="row">
+						<label class="col-md-3">価格</label>
+						<div class="col-md-9">
+							<%= @booking.total_charge %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
