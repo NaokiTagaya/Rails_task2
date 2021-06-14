@@ -23,6 +23,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
+  # モデルBooking登録param
   private
   def booking_params
     params.require(:booking).permit(:total_charge, :booking_start, :booking_end, :booking_confirmed, :property_id, :user_id, :persons)
