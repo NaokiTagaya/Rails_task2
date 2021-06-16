@@ -1,0 +1,19 @@
+<div class="container-fiuld property">
+	<h4>検索結果：<%= @recordcount %>件</h4>
+	<div class="row">
+		<% @properties.each do |p| %>
+		<div class="col-sm-6 col-lg-4 col-xl-3">
+			<div class="property-frame-inner">
+				<div class="room-image-out">
+					<%= link_to image_tag(p.room_image.url, class:"room-image"), property_path(id: p.id) %>
+				</div>
+				<div class="room-profile">
+					<p class="room-profile-name"><%= p.room_name %></p>
+					<p class="room-profile-city"><%= p.address %></p>
+					<p class="room-profile-price price-icon"><%= p.fee %></p>
+				</div>
+			</div>
+		</div>
+		<% end %>
+	</div>
+</div>

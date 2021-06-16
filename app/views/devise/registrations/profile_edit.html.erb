@@ -1,0 +1,72 @@
+<div class="container-fiuld user">
+	<div class="row">
+		<div class="col-lg-2 user-menu user-menu-pc d-lg-block d-none">
+			<ul>
+				<li>
+					<%= link_to "アカウント", users_account_path %>
+				</li>
+				<li class="active">
+					<%= link_to "プロフィール", users_profile_path %>
+				<li>
+			</ul>
+		</div>
+		<div class="col-lg-2 user-menu user-menu-mobile d-lg-none">
+			<ul>
+				<li>
+					<%= link_to "アカウント", users_account_path %>
+				</li>
+				<li class="active">
+					<%= link_to "プロフィール", users_profile_path %>
+				<li>
+			</ul>
+		</div>
+		<div class="col-lg-10 user-view">
+			<div class="user-view-box">
+        <%= render "shared/error", obj: current_user %>
+          <div class="update-content">
+            <div class="row">
+              <h5>プロフィール編集</h5>
+            </div>
+          </div>
+          <%= form_for current_user, url: {action: 'profile_update'} do |f| %>
+            <div class="update-content">
+              <div class="row">
+                <div class="col-md-6 offset-md-3">
+                  <div class="icon-box">
+                    <% if current_user.image? %>
+                      <%= image_tag current_user.image.url, alt: "ユーザーアイコン", class: "icon-image host-icon", id: "img_prev" %>
+                    <% else %>
+                      <%= image_tag "default_icon.jpg", alt: "ユーザーアイコン", class: "icon-image host-icon", id: "img_prev" %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="update-content">
+              <div class="row">
+                <label class="col-md-3">アイコン画像</label>
+                  <%= f.file_field :image, id: :user_img, accept: 'image/jpeg,image/gif,image/png', class: "mbｰ4 col-md-9", placeholder: "アイコン画像をアップロード" %>
+              </div>
+            </div>
+            <div class="update-content">
+              <div class="row">
+                <label class="col-md-3 required-a">名前</label>
+                <%= f.text_field :user_name, class: "form-control mb-4 col-md-9", placeholder: "名前を入力" %>
+              </div>	
+            </div>
+            <div class="update-content">
+              <div class="row">
+                <label class="col-md-3">自己紹介</label>
+                <%= f.text_area :user_introduction, class: "form-control mb-4 col-md-9", placeholder: "自己紹介を入力", rows: 5 %>
+              </div>	
+            </div>
+            <div class="update-content">
+              <div class="row">
+                <%= f.submit "更新", class: "col-md-2 btn btn-primary mx-3 profile-edit-btn-size hover-opacity" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+		</div>
+	</div>
+</div>

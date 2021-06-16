@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gerade Share</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSRF対策 -->
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
+  </head>
+
+  <body>
+   <header class="booking-header">
+        <!-- ヘッダー左側（ロゴ、エリア・キーワード検索）-->
+        <div class="header-left-parts">
+            <!-- ヘッダーロゴ -->
+            <%= link_to image_tag("header_logo.png", class:"hover-opacity"), root_path %>
+            <!-- エリア、キーワード検索-->
+            <%= form_with url: properties_search_path, method: :get, local: true do |f| %>
+             <div class="header-sharch d-lg-inline-block d-none">
+                <%= f.text_field :area, placeholder: "エリア", class: "form-control" %>
+                <i class="fas fa-map-pin"></i>
+             </div>
+             <div class="header-sharch d-lg-inline-block d-none">
+                <%= f.text_field :keyword, placeholder: "キーワード", class: "form-control" %>
+                <i class="fas fa-search"></i>
+             </div>
+             <%= submit_tag '検索', class: "none-button" %>
+            <% end %>
+        </div>
+        <!-- ヘッダー右側 -->
+        <div class="header-right-parts">
+          <% if user_signed_in? %>
+                <!-- ログイン済-->
+                <ul>
+                  <li class="right-item d-sm-inline-block header-name-pad d-none">
+                      <p><%= current_user.user_name %></p>
+                  </li>
+                  <li class="right-item header-menu dropdown">
+                      <% if current_user.image? %>
+                        <%= image_tag current_user.image.url, alt: "ヘッダーアイコン", class: "mxｰ3 p-1 host-icon dropdown-toggle hover-opacity", 'data-toggle': :dropdown, 'role': :button, 'aria-haspopup': :true, 'ria-expanded': :false %>
+                      <% else %>
+                        <img src="/assets/default_icon.jpg" class="mxｰ3 p-1 host-icon dropdown-toggle hover-opacity" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" alt="ヘッダーアイコン">
+                      <% end %>
+                      <ul class="dropdown-menu">
+                        <li><%= link_to "ルーム登録", new_property_path %></li>
+                        <li><%= link_to "予約済みルーム一覧", booking_list_path %></li>
+                        <li><%= link_to "登録済みルーム一覧", properties_posts_path %></li>
+                        <li><%= link_to "設定", users_account_path %></li>
+                        <li><%= link_to "ログアウト", destroy_user_session_path, method: "delete" %></li>
+                      </ul>
+                  </li>
+                </ul>
+          <% else %>
+              <!-- 未ログイン -->
+              <div class="right-item">
+                <%= link_to "ログイン", new_user_session_path, class: "header-right-btn btn-primary my-2 mx-3 hover-opacity" %>
+                <%= link_to "登録する", new_user_registration_path, class: "header-right-btn btn-secondary hover-opacity" %>
+              </div>
+          <% end %>
+        </div>
+   </header>
+   <div class="clearfix"></div>
+   <div class="notifications">
+      <!-- 成功メッセージ -->
+      <% if notice %>
+          <p class="notice"><%= notice %></p>
+      <% end %>
+      <!-- エラーメッセージ -->
+      <% if alert %>
+          <p class="alert"><%= alert %></p>
+      <% end %>
+   </div>
+      <%= yield %>
+   <footer>
+      <p>©︎ 2021 Naoki Tagaya, POTEPAN.INC</p>
+   </footer>
+  </body>
+</html>

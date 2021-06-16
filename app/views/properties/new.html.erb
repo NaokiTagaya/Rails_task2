@@ -1,0 +1,66 @@
+<div class="containe-fiuld property-new">
+	<div class="row">
+		<div class="col-lg-2 room-menu room-menu-pc d-lg-block d-none">
+			<ul>
+				<li class="active">
+					<%= link_to "基本情報", new_property_path %>
+				</li>
+			</ul>
+		</div>
+		<div class="col-lg-2 room-menu room-menu-mobile d-lg-none">
+			<ul>
+				<li class="active">
+					<%= link_to "基本情報", new_property_path %>
+				</li>
+			</ul>
+		</div>
+		<div class="col-lg-10 property-view">
+			<div class="property-view-box">
+				<%= render "shared/error", obj: @property %>
+				<%= form_with model: @property do |p| %>
+					<div class="update-content">
+						<div class="row">
+							<h5>ルーム情報登録</h5>
+						</div>
+					</div>
+					<div class="update-content">
+						<div class="row">
+							<label class="col-md-3 required-a">ルーム名</label>
+							<%= p.text_field :room_name, class: "form-control mb-4 col-md-9", placeholder: "ルーム名を入力" %>
+						</div>
+					</div>
+					<div class="update-content">
+						<div class="row">
+							<label class="col-md-3 required-a">ルーム紹介</label>
+							<%= p.text_area :room_introduction, class: "form-control mb-4 col-md-9", placeholder: "ルーム説明を入力", rows: 5 %>
+						</div>	
+					</div>
+					<div class="update-content">
+						<div class="row">
+							<label class="col-md-3 required-a">料金</label>
+							<%= p.number_field :fee, class: "form-control mb-4 col-md-9", placeholder: "一日あたりの料金を入力" %>
+						</div>	
+					</div>
+					<div class="update-content">
+						<div class="row">
+							<label class="col-md-3 required-a">住所</label>
+							<%= p.text_field :address, class: "form-control mb-4 col-md-9", placeholder: "住所を入力" %>
+						</div>	
+					</div>
+					<div class="update-content">
+						<div class="row">
+							<label class="col-md-3 required-a">ルーム画像</label>
+							<%= p.file_field :room_image, id: :user_img, accept: 'image/jpeg,image/gif,image/png', class: "mbｰ4 col-md-9", placeholder: "ルーム画像をアップロード" %>
+						</div>
+				  	</div>
+					<%= p.hidden_field :user_id, value: current_user.id %>
+					<div class="update-content">
+						<div class="row">
+							<%= p.submit "登録", class: "col-md-2 btn btn-primary mx-3 hover-opacity" %>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

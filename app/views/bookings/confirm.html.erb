@@ -1,0 +1,31 @@
+<div class="container reservations-new">
+	<div class="row">
+		<div class="col-6 offset-3">
+			<div class="reservations-new-nav">
+				<h4 class="reservations-new-check-content">予約内容確認</h4>
+				<%= form_with model: @booking do |b| %>
+					<%= b.hidden_field :property_id, value: @booking.property_id %><!-- 物件ID(property_id) -->
+					<%= b.hidden_field :user_id, value: @booking.user_id %><!-- ユーザーID(user_id) -->
+					<h5 class="price-icon"><%= @booking.property.fee %> / 日</h5>
+					<div class="reservations-new-date-select">
+						<label>開始日</label>
+						<%= b.text_field :booking_start, value: @booking.booking_start ,readonly: true, class: "form-control mb-4" %><!-- 開始日(booking_start) -->
+						<label>終了日</label>
+						<%= b.text_field :booking_end, value: @booking.booking_end ,readonly: true, class: "form-control mb-4" %><!-- 終了日(booking_end) -->
+						<% days = @booking.booking_end -  @booking.booking_start %>
+						<h6 class="reservations-new-check-content">使用日数：<%= days.numerator %></h6>
+						<h6 class="reservations-new-check-content">人数：<%= @booking.persons %>人</h6>
+						<%= b.hidden_field :persons, value: @booking.persons %><!-- 人数(persons) -->
+						<label>合計金額</label>
+						<% total = @booking.property.fee * days.numerator * @booking.persons %>
+						<%= b.text_field :total_charge, value: total ,readonly: true, class: "form-control mb-4" %><!-- 合計金額(total_charge) -->
+						<p class="reservations-new-check-content">上記内容でよろしければ「予約を確定」を押してください</p>
+						<%= b.hidden_field :booking_confirmed, value: Time.now %><!-- 予約確定日時(booking_confirmed) -->
+						<%= b.submit "予約を確定", class: "btn btn-primary form-control my-3 hover-opacity" %>
+						<%= link_to "ルーム詳細に戻る", :back, class: "btn btn-secondary form-control hover-opacity" %>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

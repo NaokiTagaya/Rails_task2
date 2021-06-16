@@ -1,0 +1,40 @@
+<div class="container room-show">
+	<div class="row">
+		<div class="col-md-8">
+			<%= image_tag @property.room_image.url, alt: "部屋画像", class: "room-show-image" %>
+			<div class="room-show-detail">
+				<div class="room-show-detail-icon">
+				<%= render "shared/error", obj: @property %>
+				<% if @property.user.image? %>
+					<%= image_tag @property.user.image.url, class: "host-icon" %>
+				<% else %>
+					<img src="/assets/default_icon.jpg" class="host-icon">
+				<% end %>
+				</div>
+				<div class="room-show-profile">
+					<p class="room-show-profile-name"><%= @property.room_name %></p>
+					<p class="room-show-profile-address"><%= @property.address %></p>
+				</div>
+			</div>
+			<p class="room-show-detail-content"><%= @property.room_introduction %></p>
+		</div>
+		<div class="col-md-4">
+			<div class="room-show-nav">
+				<h5 class="price-icon"><%= @property.fee %></h5>
+				<div class="room-show-date-select">
+				<%= form_with model: @booking, url: confirm_bookings_path, local: true do |b| %>
+					<label class="required-a">開始日</label>
+					<%= b.date_field :booking_start, class: "form-control mb-4"%>
+					<label class="required-a">終了日</label>
+					<%= b.date_field :booking_end, class: "form-control mb-4"%>
+					<label class="required-a">人数</label>
+					<%= b.number_field :persons, class: "form-control mb-4"%>
+					<%= b.hidden_field :property_id, value: @property.id %>
+					<%= b.hidden_field :user_id, value: current_user.id %>
+					<%= b.submit "予約する", class: "btn btn-primary form-control hover-opacity" %>
+				<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,49 @@
+<div class="top">
+	<div class="top-main">
+		<div class="container">
+			<div class="row col-lg-6 ">
+				<div class="form-fream">
+					<div class="form-area">
+						<p class="form-area-title mb-4">Gerade Shareでまだ体験したことのない旅をしよう</p>
+						<div class="search-form">
+							<!-- エリア検索 -->
+							<%= form_with url: properties_search_path, method: :get, local: true do |f| %>
+								<label>エリア</label>
+								<%= f.text_field :area, class: "form-control mb-4", placeholder: "東京" %>
+								<%= f.submit "探す", class: "form-control btn-primary mb-4 hover-opacity" %>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="panel-area">
+			<!-- おすすめエリア群 -->
+			<h1 class="section-title">おすすめのエリア</h1>
+			<div class="row">
+				<div class="panel-item col-lg-3 col-6">
+					<span>東京</span>
+					<%= link_to image_tag("top_tokyo.jpg" , class:"panel-image hover-image"), properties_search_path(area: "東京") %>
+					<div class="shadow"></div>
+				</div>
+				<div class="panel-item col-lg-3 col-6">
+					<span>大阪</span>
+					<%= link_to image_tag("top_osaka.jpg", class:"panel-image hover-image"), properties_search_path(area: "大阪") %>
+					<div class="shadow"></div>
+				</div>
+				<div class="panel-item col-lg-3 col-6">
+					<span>京都</span>
+					<%= link_to image_tag("top_kyoto.jpg", class:"panel-image kyoto-image hover-image"), properties_search_path(area: "京都") %>
+					<div class="shadow"></div>
+				</div>
+				<div class="panel-item col-lg-3 col-6">
+					<span>横浜</span>
+					<%= link_to image_tag("top_yokohama.jpg", class:"panel-image yokohama-image hover-image"), properties_search_path(area: "横浜") %>
+					<div class="shadow"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
